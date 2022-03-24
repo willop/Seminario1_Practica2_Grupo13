@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Dropdown, Row, Col, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'
+import { Form, Button, FloatingLabel} from 'react-bootstrap'
 import BarraNavegacion from '../components/BarraNavegacion'
 import '../Style/SubirFoto.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,13 +11,13 @@ import Swal from 'sweetalert2'
 export default function SubirFoto() {
 
     const cookies = new Cookies();
-    const [estadopag, setestadopag]=useState(false)
+    const [estadopag, setestadopag] = useState(false)
     const [img, setimg] = useState()
-    const [nombrealbum, setnombrealbum]= useState("Lista de albumes ")
+    const [nombrealbum, setnombrealbum] = useState("Lista de albumes ")
     const [enviar, setenviar] = useState({
         username: cookies.get('cookieusername'),
         nombrefoto: '',
-        album: 'Lista de albumes',
+        descripcion: '',
         foto: ''
     })
 
@@ -64,7 +64,8 @@ export default function SubirFoto() {
     }
 
     const enviarDatos = async (event) => {
-        //console.log(enviar)
+        console.log(enviar)
+        /*
         try {
             let configuracion = {
                 method: 'POST',
@@ -78,29 +79,29 @@ export default function SubirFoto() {
             let json = await respuesta.json();
             //console.log('valor de la respuesta json')
             //console.log(json)
-            if(json.respuesta == 0){
+            if (json.respuesta == 0) {
                 await Swal.fire({
                     position: 'top-center',
                     icon: 'error',
                     title: 'Error al subir una nuevo foto',
                     button: "Aceptar"
-                  })
+                })
                 window.location.href = "/home";
             }
-            else{
+            else {
                 await Swal.fire({
                     position: 'top-center',
                     icon: 'success',
                     title: 'Foto subida exitosamente',
                     button: "Aceptar"
-                  })
+                })
                 window.location.href = "/home";
             }
             //validacion si es true o false
             //realizar la redireccion de pagina
         } catch (error) {
         }
-
+*/
     }
 
     const InicioDatos = async (event) => {
@@ -148,7 +149,7 @@ export default function SubirFoto() {
             InicioDatos()
             setestadopag(true)
         }
-        else{
+        else {
             setestadopag(true)
         }
     })
@@ -158,43 +159,38 @@ export default function SubirFoto() {
     return (
         <div>
             <BarraNavegacion />
-                <div id="id_contenedor">
-                    <center>
-                    <img src={img} id="imagen"/>
-                    </center>   
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Form.Group className="mb-3">
-                        <center><h4>Agregar foto</h4></center>
-                        <Form.Control type="file" onChange={filesSelectedHandler} name="foto" multiple />
-                    </Form.Group>
-                    <br />
-                    <Form.Group className="mb-3">
-                        <center><h4>Nombre de la fotografia</h4></center>
-                        <Form.Control type="text" onChange={handleuserchange} name="nombrefoto" multiple />
-                    </Form.Group>
-                    <br />
-                    <center>
-                    <Dropdown className="d-inline mx-2" onClick={handlenamechange} >
-                        <Dropdown.Toggle id="dropdown-autoclose-true">
-                            {nombrealbum}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {albums.map((album) => {
-                                return (
-                                        <AlbumComponent namee = {album.name} key={album.name}/>
-                                )
-                            })}
-
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    
+            <div id="id_contenedor">
+                <center>
+                    <img src={img} id="imagen" />
+                </center>
+                <br />
+                <br />
+                <br />
+                <Form.Group className="mb-3">
+                    <center><h4>Agregar foto</h4></center>
+                    <Form.Control type="file" onChange={filesSelectedHandler} name="foto" multiple />
+                </Form.Group>
+                <br />
+                <Form.Group className="mb-3">
+                    <center><h4>Nombre de la fotografia</h4></center>
+                    <Form.Control type="text" onChange={handleuserchange} name="nombrefoto" multiple />
+                </Form.Group>
+                <FloatingLabel controlId="floatingTextarea2" label="Comments">
+                    <Form.Control
+                        as="textarea"
+                        name="descripcion"
+                        onChange={handleuserchange}
+                        placeholder="Leave a comment here"
+                        style={{ height: '100px' }}
+                    />
+                </FloatingLabel>
+                <br />
+                <center>
                     <br />
                     <br />
                     <Button variant="success" onClick={enviarDatos}>Agregar fotografia</Button>
-                    </center>
-                </div>  
+                </center>
+            </div>
         </div>
     )
 }
