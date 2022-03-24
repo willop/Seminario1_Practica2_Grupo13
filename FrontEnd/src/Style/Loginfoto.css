@@ -1,0 +1,15 @@
+#video-stream {
+    background-color: aqua;
+    margin-left: 30%;
+    width: 40%;    
+}
+  
+#screen{
+    background-color: rebeccapurple;
+    margin-left: 30%;
+    width: 40%;  
+}
+
+#reg_log{
+    width: 30%;
+}

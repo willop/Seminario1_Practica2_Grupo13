@@ -7,6 +7,8 @@ import SubirFoto from '../components/SubirFoto';
 import EditarAlbumes from '../components/EditarAlbumes';
 import VerFotos from '../components/VerFotos';
 import React from 'react'
+import LoginFoto from '../components/LoginFoto';
+import ExtraerTexto from '../components/ExtraerTexto';
 import '../Style/Aplicacion.css';
 
 export default function AppRoutes() {
@@ -20,6 +22,8 @@ export default function AppRoutes() {
             <Route  path="/subirFoto" element={<SubirFoto/>} > </Route>
             <Route  path="/EditarAlbum" element={<EditarAlbumes/>} > </Route>
             <Route  path="/VerFotos" element={<VerFotos/>} > </Route>
+            <Route  path="/LoginFoto" element={<LoginFoto/>} > </Route>
+            <Route  path="/ExtraerTexto" element={<ExtraerTexto/>} > </Route>
         </Routes>
         </BrowserRouter>
         //<div>Hola mundo desde approutes</div>

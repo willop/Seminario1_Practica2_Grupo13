@@ -10,11 +10,10 @@ export function Home() {
 
     const cookies = new Cookies();
     const [estadopag, setestadopag]=useState(false)
-    const [estadodiv, setEstadodiv] = useState(1)
-
     const [imagenmostrar, setimg] = useState("https://cdn.pixabay.com/photo/2015/02/09/20/03/koala-630117__340.jpg")
     const [nombre, setnombre] = useState('')
     const [username, setusername] = useState(cookies.get('cookieusername'))
+    const [tag, settag]=useState('Tag = nombre; Tag = Comediante; Tag = persona');
 
 
     const InicioDatos = async (event) => {
@@ -80,12 +79,17 @@ export function Home() {
             <br />
                 <br />
                 <br />
+                <center><h1>{tag}</h1></center>
+                <br/>
+                <br/>
             <div id="id_opciones">
                 <center>
   
                 <div className="d-grid gap-2">
                 <Button variant="primary" onClick={cambio} size="lg" href="/VerFotos">Ver Fotos</Button>
                 
+                <Button variant="primary" onClick={cambio} size="lg" href="/ExtraerTexto">Ver Fotos</Button>
+
                 <Button variant="primary" onClick={cambio} size="lg" href="/subirFoto" >Subir Foto</Button>
                 
                 <Button variant="primary"  href="/EditarAlbum" size="lg" >Editar Albumes</Button>

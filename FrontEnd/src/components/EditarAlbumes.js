@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button,Dropdown, Row, Col, Navbar, Nav, NavDropdown,  } from 'react-bootstrap'
+import { Form, Button,Dropdown } from 'react-bootstrap'
 import BarraNavegacion from '../components/BarraNavegacion'
 import AlbumComponent from './album/AlbumComponent'
 import Cookies from 'universal-cookie'

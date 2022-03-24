@@ -94,7 +94,11 @@ const enviarDatos = async(event)=>{
             </Button>
             <br/>
             <br/>
-
+            <Button  id="ingresar" variant="warning" href="/LoginFoto" > 
+              Ingresar por camara
+            </Button>
+            <br/>
+            <br/>
             <Button  id="ingresar2" variant="primary" href="/NuevoUsuario" > 
               Nuevo usuario
             </Button>
