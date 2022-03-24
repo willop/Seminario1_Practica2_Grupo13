@@ -36,10 +36,11 @@ app.use('/',require('./routes/eliminarAlbum'));
 //API QUE RETORNA LAS FOTOS POR ALBUM
 app.use('/',require('./routes/verFotos'));
 //API DETALLE FOTO
-app.use('/',require('./routes/DetalleFoto'))
+app.use('/',require('./routes/detalleFoto'))
 //API TRADUCIR
 app.use('/',require('./routes/traducir'))
-
+//API EXTRAER TEXTO
+app.use('/',require('./routes/detectarTexto'))
 
 
 //SERVER LISTENING
