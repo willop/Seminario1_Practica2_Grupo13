@@ -12,7 +12,7 @@ export default function ExtraerTexto() {
     //constantes
     const [img, setimg] = useState()
     const [enviar, setenviar] = useState("")
-    const [resp, setresp] = useState("asdfasdfas")
+    const [resp, setresp] = useState("Texto extraido")
 
 
     const filesSelectedHandler = async (event) => {
