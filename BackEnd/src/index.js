@@ -35,6 +35,10 @@ app.use('/',require('./routes/modificarAlbum'));
 app.use('/',require('./routes/eliminarAlbum'));
 //API QUE RETORNA LAS FOTOS POR ALBUM
 app.use('/',require('./routes/verFotos'));
+//API DETALLE FOTO
+app.use('/',require('./routes/DetalleFoto'))
+//API TRADUCIR
+app.use('/',require('./routes/traducir'))
 
 
 
