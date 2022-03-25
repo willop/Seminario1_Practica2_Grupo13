@@ -50,10 +50,11 @@ export default function VerFotos() {
             },
             body: JSON.stringify({ "username": username })
         }
-        let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/verfotos', configuracion)
+        //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/verfotos', configuracion)
+        let respuesta = await fetch('http://localhost:5000/verfotos', configuracion)
         let json = await respuesta.json();
-        //console.log('valor de la respuesta json')
-        //console.log(json)
+        console.log('valor de la respuesta json')
+        console.log(json)
         //console.log("mostrando el vector de respuesta:\n", json)
         setcontrolabum(json)
         //console.log("Mostrando los albumes almacenados",controlabum)
@@ -61,6 +62,10 @@ export default function VerFotos() {
     }
 }
 
+
+function clickimagen(){
+  alert("Se hizo click")
+}
 
   useEffect(function () {
     //console.log("Hola al iniciar la app")
@@ -89,11 +94,12 @@ export default function VerFotos() {
               <br />
               <div id="div_poralbum" >
               <Container >
-              {albumes.fotos.map((imagenes,index) => {
+              {albumes.fotos.map((imagenes,indexx) => {
                 return (
-                  <div id="id_album" key={index}>
+                  <div id="id_album" key={indexx}>
                   <Col>
-                  <AlbumFotos imagen={imagenes} />
+                  <AlbumFotos imagen={imagenes} keyy={indexx} />
+                  <h1>{indexx}</h1>
                   </Col>
                   </div>
                 )

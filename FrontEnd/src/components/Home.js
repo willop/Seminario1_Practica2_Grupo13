@@ -27,14 +27,16 @@ export function Home() {
                 },
                 body: JSON.stringify({ "username": username })
             }
-            let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/home', configuracion)
+            //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/home', configuracion)
+            let respuesta = await fetch('http://localhost:5000/home', configuracion)
             let json = await respuesta.json();
             //console.log('valor de la respuesta json')
-            //console.log(json)
+            console.log(json)
             setimg("data:image/jpg;base64, " + json.foto)
             setnombre(json.name)
             const valimg = "data:image/jpg;base64, " + json.foto
             const valname = json.name
+            settag(json.tag)
             setnombre(json.name)
             cookies.set('cookienombre',valname,{path: '/'})
 
@@ -88,7 +90,7 @@ export function Home() {
                 <div className="d-grid gap-2">
                 <Button variant="primary" onClick={cambio} size="lg" href="/VerFotos">Ver Fotos</Button>
                 
-                <Button variant="primary" onClick={cambio} size="lg" href="/ExtraerTexto">Ver Fotos</Button>
+                <Button variant="primary" onClick={cambio} size="lg" href="/ExtraerTexto"> Extraer Texto </Button>
 
                 <Button variant="primary" onClick={cambio} size="lg" href="/subirFoto" >Subir Foto</Button>
                 

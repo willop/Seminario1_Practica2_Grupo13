@@ -25,9 +25,9 @@ export default function Login() {
 }
 
 const enviarDatos = async(event)=>{
-  var md5 = require('md5');
-  var nuevacontra = md5(datos.password)
-  datos.password = nuevacontra
+  //var md5 = require('md5');
+  //var nuevacontra = md5(datos.password)
+  //datos.password = nuevacontra
   //.log(datos)
   try {
       let configuracion = {
@@ -38,7 +38,8 @@ const enviarDatos = async(event)=>{
           },
           body: JSON.stringify(datos)
       }
-      let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/login', configuracion)
+      //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/login', configuracion)
+      let respuesta = await fetch('http://localhost:5000/login', configuracion)
       let json = await respuesta.json();
       //.log('valor de la respuesta json')
       //.log(json)

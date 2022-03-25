@@ -46,14 +46,14 @@ export default function LoginFoto() {
   const Foto = () => {
     console.log(webRef.current.getScreenshot())
     setimg(webRef.current.getScreenshot())
-    datos.password = webRef.current.getScreenshot()  // para quitar el base64 .slice(23)
+    datos.password = webRef.current.getScreenshot().slice(23)  // para quitar el base64 .slice(23)
     setShow(!show)
   }
 
   const enviarDatos = async (event) => {
 
-    console.log(datos)/*
-    try {
+    console.log(datos)
+    /*try {
         let configuracion = {
             method: 'POST',
             headers: {
@@ -62,12 +62,12 @@ export default function LoginFoto() {
             },
             body: JSON.stringify(datos)
         }
-        let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/', configuracion)
+        let respuesta = await fetch('http://localhost:5000/EntrarCamara', configuracion)
         let json = await respuesta.json();
         //.log('valor de la respuesta json')
         //.log(json)
-        let resp = json.respuesta
-        if(resp == 1){
+        let resp = json.response
+        if(resp != ""){
           //si es true redirect
           const cookies = new Cookies();
           cookies.set('cookieusername',datos.username,{path:'/'});
@@ -77,7 +77,7 @@ export default function LoginFoto() {
           await Swal.fire({
             position: 'top-center',
             icon: 'error',
-            title: 'Usuario o contraseña invalidos',
+            title: 'Usuario o foto incorrecta',
             button: "Aceptar"
           })
         }

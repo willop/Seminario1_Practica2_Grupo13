@@ -14,7 +14,6 @@ export default function ExtraerTexto() {
     const [enviar, setenviar] = useState("")
     const [resp, setresp] = useState("Texto extraido")
 
-
     const filesSelectedHandler = async (event) => {
         ////console.log(event.target.files[0]);
         const filefoto = event.target.files[0];
@@ -42,6 +41,47 @@ export default function ExtraerTexto() {
         });
     }
 
+    const enviarDatos = async (event) => {
+        console.log(JSON.stringify({foto:enviar}))
+        try {
+            let configuracion = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({img:enviar})
+            }
+            //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/cargarfoto', configuracion)
+            let respuesta = await fetch('http://localhost:5000/ExtraerTexto', configuracion)
+            let json = await respuesta.json();
+            //console.log('valor de la respuesta json')
+            //console.log(json)
+            if (json.texto === "") {
+                await Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: 'Error al subir una nuevo foto',
+                    button: "Aceptar"
+                })
+                window.location.href = "/home";
+            }
+            else {
+                await Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Foto subida exitosamente',
+                    button: "Aceptar"
+                })
+                setresp(json.texto)
+                //window.location.href = "/home";
+            }
+            //validacion si es true o false
+            //realizar la redireccion de pagina
+        } catch (error) {
+        }
+    }
+
     return (
         <div>
             <BarraNavegacion />
@@ -58,7 +98,7 @@ export default function ExtraerTexto() {
                         <h1>{resp}</h1>
                     <br />
                     <br />
-                    <Button variant="success" >Obtener texto</Button>
+                    <Button variant="success" onClick={enviarDatos} >Obtener texto</Button>
                 </center>
             </div>
         </div>

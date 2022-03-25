@@ -65,7 +65,7 @@ export default function SubirFoto() {
 
     const enviarDatos = async (event) => {
         console.log(enviar)
-        /*
+        
         try {
             let configuracion = {
                 method: 'POST',
@@ -75,7 +75,8 @@ export default function SubirFoto() {
                 },
                 body: JSON.stringify(enviar)
             }
-            let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/cargarfoto', configuracion)
+            //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/cargarfoto', configuracion)
+            let respuesta = await fetch('http://localhost:5000/cargarfoto', configuracion)
             let json = await respuesta.json();
             //console.log('valor de la respuesta json')
             //console.log(json)
@@ -86,7 +87,7 @@ export default function SubirFoto() {
                     title: 'Error al subir una nuevo foto',
                     button: "Aceptar"
                 })
-                window.location.href = "/home";
+                //window.location.href = "/home";
             }
             else {
                 await Swal.fire({
@@ -95,16 +96,16 @@ export default function SubirFoto() {
                     title: 'Foto subida exitosamente',
                     button: "Aceptar"
                 })
-                window.location.href = "/home";
+                //window.location.href = "/home";
             }
             //validacion si es true o false
             //realizar la redireccion de pagina
         } catch (error) {
         }
-*/
     }
 
     const InicioDatos = async (event) => {
+        /*
         try {
             let configuracion = {
                 method: 'POST',
@@ -114,7 +115,8 @@ export default function SubirFoto() {
                 },
                 body: JSON.stringify({ "username": enviar.username })
             }
-            let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/subirfoto', configuracion)
+            //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/subirfoto', configuracion)
+            let respuesta = await fetch('http://localhost:5000/subirfoto', configuracion)
             let json = await respuesta.json();
             //console.log('valor de la respuesta json')
             //console.log(json)
@@ -122,7 +124,7 @@ export default function SubirFoto() {
             //console.log("Mostrando los albumes almacenados",albumes)
 
         } catch (error) {
-        }
+        }*/
     }
 
 
