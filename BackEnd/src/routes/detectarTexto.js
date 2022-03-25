@@ -26,7 +26,7 @@ router.post('/ExtraerTexto', (req,res)=>{
         data.TextDetections.forEach(element => {
             if(element.Type == "LINE"){
                 cad+= element.DetectedText
-                cad+= "<br>"
+                cad+= "\n"
             }
         });  
         res.json({texto: cad});    
