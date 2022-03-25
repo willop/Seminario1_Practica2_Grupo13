@@ -2,27 +2,23 @@ const { Router } = require('express');
 const router = Router();
 
 const aws = require('aws-sdk'); //aws
+const aws_keys = require('../../aws/credentials')
 
-router.post('/ExtraerTexto',(req,res)=>{
+router.post('/ExtraerTexto', (req,res)=>{
     
-    var {foto} = req.body;
+    var {img} = req.body;
 
-    const Rekognition = new aws.Rekognition();
-
-    aws.config.update({
-        region: process.env.REGION,
-        accessKeyId: process.env.ACCESS_KEY_ID_REKOGNITION,
-        secretAccessKey: process.env.SECRET_ACCESS_KEY_REKOGNITION
-    });
-
+    const Rekognition = new aws.Rekognition(aws_keys.rekognition);
+    
     var params = {
       Image: { 
-        Bytes: Buffer.from(foto, 'base64')
+        Bytes: Buffer.from(img, 'base64')
       }
     };
 
     Rekognition.detectText(params, function(err, data) {
       if (err) {
+        console.log(err)
         res.json({texto: "Error"})
       }else {
         let cad = ""
@@ -33,7 +29,7 @@ router.post('/ExtraerTexto',(req,res)=>{
                 cad+= "<br>"
             }
         });  
-        res.json({texto: cad});      
+        res.json({texto: cad});    
       }
     });
 
