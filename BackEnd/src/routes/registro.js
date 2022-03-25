@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');//generar id random
 const aws_tools = require('../../aws/bucket');
 const sql = require('mssql');//sql server node
 const con = require('../../database/conection');//conexion bd
-const detectarEtiqueta = require('./detectarEtiquetas'); //aws
+const detectarEtiqueta = require('./detectarEtiquetas'); //detectar etiquetas de foto
 
 router.post('/nuevousuario', async (req, res) => {
     //destructurando valores
