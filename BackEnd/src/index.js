@@ -41,7 +41,8 @@ app.use('/',require('./routes/detalleFoto'))
 app.use('/',require('./routes/traducir'))
 //API EXTRAER TEXTO
 app.use('/',require('./routes/detectarTexto'))
-
+//
+app.use('/',require('./routes/EntrarCamara'))
 
 //SERVER LISTENING
 app.listen(app.get('port'), () => {
