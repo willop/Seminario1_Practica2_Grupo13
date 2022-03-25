@@ -4,6 +4,7 @@ const router = Router();
 const aws = require('aws-sdk'); //aws
 const sql = require('mssql')//sql server node
 const con = require('../../database/conection')//conexion bd
+const aws_keys = require('../../aws/credentials')
 
 router.post('/verfotos', async (req, res) => {
     //destructurando valores
@@ -26,7 +27,7 @@ router.post('/verfotos', async (req, res) => {
 
     ///AQUI ES DONDE SE TIENE QUE HACER LO DE S3, LA RESPUESTA DE LA CONSULTA VIENE EN resp
     let respuesta = [];
-
+    
     //creando albums
     for (const element of resp) {
         let name = element.name;
@@ -37,13 +38,7 @@ router.post('/verfotos', async (req, res) => {
         }
     }
 
-    var S3 = new aws.S3();
-
-    aws.config.update({
-        region: process.env.REGION,
-        accessKeyId: process.env.ACCESS_KEY_ID,
-        secretAccessKey: process.env.SECRET_ACCESS_KEY
-    });
+    var S3 = new aws.S3(aws_keys.s3);
 
     //agregando fotos al album    
     for (const element of resp) {
@@ -54,7 +49,7 @@ router.post('/verfotos', async (req, res) => {
                     Key: element.path
                 };      
                 let cadena = await S3.getObject(getParams, function (err, data) {}).promise();
-                element2.fotos.push(Buffer.from(cadena.Body).toString('base64'));
+                element2.fotos.push({id:element.idImage,foto: Buffer.from(cadena.Body).toString('base64')});
             }
         }
     }
