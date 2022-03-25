@@ -1,19 +1,15 @@
 const { Router } = require('express');
 const router = Router();
+const aws_keys = require('../../aws/credentials')
 
 const aws = require('aws-sdk'); //aws
 
 router.post('/traducir', (req, res) => {
     try {
-        text = req.body.text
+        text = req.body.texto
         language = req.body.idioma
 
-        var translate = new aws.Translate();
-        aws.config.update({
-            region: process.env.REGION,
-            accessKeyId: process.env.ACCESS_KEY_TRASLATE_ID,
-            secretAccessKey: process.env.SECRET_ACCESS_TRASLATE_KEY
-        });
+        var translate = new aws.Translate(aws_keys.translate);
 
         let params = {
             SourceLanguageCode: 'auto',
@@ -33,7 +29,6 @@ router.post('/traducir', (req, res) => {
                 });
             }
         });
-
     } catch (error) {
         res.json({
             traduccion: "No lo pude Traduccir XD"
