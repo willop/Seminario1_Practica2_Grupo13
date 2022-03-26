@@ -3,6 +3,7 @@ import { Form, Button,Container, Row, Col } from 'react-bootstrap'
 import BarraNavegacion from '../components/BarraNavegacion'
 import '../Style/Home.css'
 import Cookies from 'universal-cookie'
+import Chat from './Chat'
 
 
 
@@ -100,7 +101,9 @@ export function Home() {
                 </center>
 
             </div>
+            <Chat/>
         </div>
+
     )
 }
 

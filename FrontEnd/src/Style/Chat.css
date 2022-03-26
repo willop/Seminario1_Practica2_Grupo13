@@ -1,0 +1,37 @@
+#Contenedor {
+    position: relative;
+    background-color: aliceblue;
+    width: 40%;
+    left: 30%;
+    top:100px;
+    height: 650px;
+}
+
+#areatexto{
+    width: 80%;
+    float: left;
+}
+
+#btnenviar{
+    float: right;
+    width: 10%;
+}
+
+.icono::after{
+    animation: movc 2s;
+}
+
+
+@keyframes movc {
+    from{
+        margin-right: 100%;
+    }
+    to{
+        margin-right: 0%;
+    }
+}
+
+#texto{
+    display: block;
+    background-color:red;
+}
