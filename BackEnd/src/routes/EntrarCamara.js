@@ -34,7 +34,7 @@ router.post('/EntrarCamara', async (req, res) => {
     }
 
     // console.log(resp);
-    console.log(ruta)
+    console.log(" ")
     if (resp) {
         // obtencion de la imagen    
         var photoParams =
@@ -42,32 +42,40 @@ router.post('/EntrarCamara', async (req, res) => {
             Bucket: process.env.BUCKET_S3,
             Key: ruta
         };
-        await S3.getObject(photoParams, function (err, data) {
+
+        let a = await S3.getObject(photoParams, function (err, data) {
             if (err) {
-                console.log("Error no pude econtrar la foto")
+                // console.log("Error no pude econtrar la foto")
+                return null
             } else {
-                imageComparation = (data.Body).toString('base64')
+                imageComparation = Buffer.from(data.Body, 'base64')
+                return imageComparation
             }
         }).promise();
 
-
+        console.log("antes de entrar a los parametros")
+        // console.log(a);
         // comparacion de imagenes de perfil
         var params = {
+            SimilarityThreshold: 85,
             SourceImage: {
                 Bytes: Buffer.from(password, 'base64')
             },
             TargetImage: {
-                Bytes: Buffer.from(imageComparation, 'base64')
-            },
-            SimilarityThreshold: '85'
+                Bytes: imageComparation
+            }            
         };
 
-        // console.log(params);
-        
-        comparation.compareFaces(params, function (err, data) {
-            if (err) {res.json({response:""})}
+        console.log(" ")
+        // console.log(a)
+
+        comparation.compareFaces(params,  function (err, data) {
+            if (err) {
+                console.log("datos -->",err);
+                res.json({response: ""})
+            }
             else {
-                res.json({ response: username });
+                res.json({ response: username});
             }
         });
     }
