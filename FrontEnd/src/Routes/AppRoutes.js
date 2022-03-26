@@ -9,6 +9,7 @@ import VerFotos from '../components/VerFotos';
 import React from 'react'
 import LoginFoto from '../components/LoginFoto';
 import ExtraerTexto from '../components/ExtraerTexto';
+import TraducirDescripcion from '../components/TraducirDescripcion';
 import '../Style/Aplicacion.css';
 
 export default function AppRoutes() {
@@ -24,6 +25,7 @@ export default function AppRoutes() {
             <Route  path="/VerFotos" element={<VerFotos/>} > </Route>
             <Route  path="/LoginFoto" element={<LoginFoto/>} > </Route>
             <Route  path="/ExtraerTexto" element={<ExtraerTexto/>} > </Route>
+            <Route  path="/TraducirDescripcion" element={<TraducirDescripcion/>} > </Route>
         </Routes>
         </BrowserRouter>
         //<div>Hola mundo desde approutes</div>

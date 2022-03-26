@@ -272,7 +272,7 @@ export default function EditarAlbumes() {
                 
                 <br />
                 <br />
-                <Button variant="success" href="/VerFotos" >Ver Fotos</Button>
+                    <Button variant="success" href="/VerFotos">Ver Fotos</Button>
                 </div>
             </div>
         </div>

@@ -30,11 +30,11 @@ export function Home() {
             //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/home', configuracion)
             let respuesta = await fetch('http://localhost:5000/home', configuracion)
             let json = await respuesta.json();
-            //console.log('valor de la respuesta json')
+            console.log('valor de la respuesta json')
             console.log(json)
-            setimg("data:image/jpg;base64, " + json.foto)
+            setimg("data:image/png;base64, " + json.foto)
             setnombre(json.name)
-            const valimg = "data:image/jpg;base64, " + json.foto
+            const valimg = "data:image/png;base64, " + json.foto
             const valname = json.name
             settag(json.tag)
             setnombre(json.name)
@@ -71,7 +71,8 @@ export function Home() {
                 <br />
             <div id="id_bodyHome">
                 <div id="id_foto">
-                    <center><h1>Bienvenido {username}</h1>
+                    <center>
+                        <h1>Bienvenido {username}</h1>
                     <br />
                 <br />
                     <img id="foto_id" src={imagenmostrar} />

@@ -57,7 +57,7 @@ router.post('/EntrarCamara', async (req, res) => {
         // console.log(a);
         // comparacion de imagenes de perfil
         var params = {
-            SimilarityThreshold: 85,
+            SimilarityThreshold: 50,
             SourceImage: {
                 Bytes: Buffer.from(password, 'base64')
             },

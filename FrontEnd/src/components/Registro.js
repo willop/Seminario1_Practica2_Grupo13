@@ -32,7 +32,16 @@ export default function Registro() {
         ////console.log(event.target.files[0]);
         const filefoto = event.target.files[0];
         const base64 = await convertobase64(filefoto);
-        const newbase64 = base64.slice(23)
+        var tipo = filefoto.name.slice( ( (filefoto.name.lastIndexOf(".") - 1) + 2) ) 
+        var newbase64=base64
+        if (tipo === "jpg"){
+            newbase64 = base64.slice(23)
+        }else{
+            newbase64 = base64.slice(22)
+        }
+
+        //newbase64 = base64.slice()
+        console.log(newbase64)
         //console.log(newbase64)
         datos.foto = newbase64
         //console.log("Datos ingresados antes de enviar",datos)

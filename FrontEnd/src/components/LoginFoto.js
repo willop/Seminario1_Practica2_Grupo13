@@ -44,16 +44,17 @@ export default function LoginFoto() {
   }
 
   const Foto = () => {
-    console.log(webRef.current.getScreenshot())
+    //console.log(webRef.current.getScreenshot())
     setimg(webRef.current.getScreenshot())
     datos.password = webRef.current.getScreenshot().slice(23)  // para quitar el base64 .slice(23)
+    console.log("despues del slice "+datos.password)
     setShow(!show)
   }
 
   const enviarDatos = async (event) => {
-
+    console.log(datos.password)
     console.log(datos)
-    /*try {
+    try {
         let configuracion = {
             method: 'POST',
             headers: {
@@ -64,8 +65,8 @@ export default function LoginFoto() {
         }
         let respuesta = await fetch('http://localhost:5000/EntrarCamara', configuracion)
         let json = await respuesta.json();
-        //.log('valor de la respuesta json')
-        //.log(json)
+        console.log('valor de la respuesta json')
+        console.log(json)
         let resp = json.response
         if(resp != ""){
           //si es true redirect
@@ -84,7 +85,7 @@ export default function LoginFoto() {
         //validacion si es true  o false
         //realizar la redireccion de pagina
     } catch (error) {
-    }*/
+    }
   }
 
 
@@ -109,6 +110,7 @@ export default function LoginFoto() {
           <Webcam
             ref={webRef}
             audio={false}
+            screenshotFormat="image/jpeg"
             videoConstraints={devices[dispositivo]}
             style={{
               width: '100%',
@@ -140,7 +142,7 @@ export default function LoginFoto() {
       <center>
         <br />
         <br />
-        <Button id="reg_log" variant="danger" onClick={enviarDatos} href="/" >
+        <Button id="reg_log" variant="danger" href="/" >
           Login
         </Button>
       </center>

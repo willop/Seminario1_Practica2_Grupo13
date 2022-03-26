@@ -1,4 +1,4 @@
-import React, { Component ,useState } from 'react'
+import React, { useState } from 'react'
 import {Form, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Style/Login.css"
@@ -25,9 +25,9 @@ export default function Login() {
 }
 
 const enviarDatos = async(event)=>{
-  //var md5 = require('md5');
-  //var nuevacontra = md5(datos.password)
-  //datos.password = nuevacontra
+  var md5 = require('md5');
+  var nuevacontra = md5(datos.password)
+  datos.password = nuevacontra
   //.log(datos)
   try {
       let configuracion = {

@@ -98,8 +98,8 @@ function clickimagen(){
                 return (
                   <div id="id_album" key={indexx}>
                   <Col>
-                  <AlbumFotos imagen={imagenes} keyy={indexx} />
-                  <h1>{indexx}</h1>
+                  <AlbumFotos imagen={imagenes.foto} keyy={imagenes.id} />
+                  <h1>{imagenes.id}</h1>
                   </Col>
                   </div>
                 )

@@ -32,7 +32,16 @@ export default function EditarPerfil() {
         ////console.log(event.target.files[0]);
         const filefoto = event.target.files[0];
         const base64 = await convertobase64(filefoto);
-        const newbase64 = base64.slice(23)
+        var tipo = filefoto.name.slice( ( (filefoto.name.lastIndexOf(".") - 1) + 2) ) 
+        var newbase64=base64
+        if (tipo === "jpg"){
+            newbase64 = base64.slice(23)
+        }else{
+            newbase64 = base64.slice(22)
+        }
+
+        //newbase64 = base64.slice()
+        console.log(newbase64)
         //console.log(newbase64)
         datos.foto = newbase64
         datos.cambiarImagen = 1;
@@ -72,10 +81,11 @@ export default function EditarPerfil() {
                     },
                     body: JSON.stringify(datos)
                 }
-                let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/editarPerfil', configuracion)
+                //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/editarPerfil', configuracion)
+                let respuesta = await fetch('http://localhost:5000/editarPerfil', configuracion)
                 let json = await respuesta.json();
-                //console.log('valor de la respuesta json')
-                //console.log(json)
+                console.log('valor de la respuesta json')
+                console.log(json)
                 let resp = json.respuesta
                 if(resp == 0){
                     await Swal.fire({

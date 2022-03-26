@@ -1,12 +1,16 @@
 import React from 'react'
+import Cookies from 'universal-cookie'
 import { Form, Button, Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AlbumFotos = (props) => {
     
+    const cookies = new Cookies();
     const val = props.keyy
     function clickimagen(valor){
         alert("Se hizo click en id: "+val )
+        cookies.set('cookieidimage',val,{path:'/'});
+        window.location.href = "/TraducirDescripcion";
       }
 
     return (

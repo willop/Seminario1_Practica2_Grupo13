@@ -18,8 +18,16 @@ export default function ExtraerTexto() {
         ////console.log(event.target.files[0]);
         const filefoto = event.target.files[0];
         const base64 = await convertobase64(filefoto);
-        const newbase64 = base64.slice(23)
-        ////console.log(base64)
+        var tipo = filefoto.name.slice( ( (filefoto.name.lastIndexOf(".") - 1) + 2) ) 
+        var newbase64=base64
+        if (tipo === "jpg"){
+            newbase64 = base64.slice(23)
+        }else{
+            newbase64 = base64.slice(22)
+        }
+
+        //newbase64 = base64.slice()
+        console.log(newbase64)
         //enviar.foto = newbase64;
         //console.log(enviar)
         setimg(URL.createObjectURL(event.target.files[0]))
