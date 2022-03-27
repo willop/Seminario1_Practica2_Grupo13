@@ -1,33 +1,60 @@
 import "../Style/Chat.css";
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container } from 'react-bootstrap'
 import {IoIosSend} from "react-icons/io";
-import React, { useState , useEffect} from 'react'
+import React, { useState } from 'react'
+import Mensaje from "./Comp_msg/Mensaje"
 
 export default function Chat() {
     
     const [mensaje, setmensaje] = useState('')
     const [mensajeglobal, setmensajeglobal] = useState('')
+    var [prueba,setprueba] =useState([
+        {idp: 1,
+        msgp:"Bienvenido!!!!!!"}
+    ])
+    /*const [aux, setaux] = useState({
+        idp: 0, //
+        msgp:""
+    })*/
 
 
     const Enviarmensaje = async (event) => {
+        console.log("valor del mensaje: "+mensaje)
+        /*aux.idp=0;
+        aux.msgp=mensaje;
+        const auxprueba = prueba
+        auxprueba.push(aux)
+        prueba = auxprueba*/
+        var p = {
+            idp: 0,
+            msgp: mensaje
+        }
+        prueba.push(p)
         var msg = mensajeglobal+ mensaje +"\n"
-        setmensajeglobal(msg)
+        setmensajeglobal(msg) 
+        console.log("la nueva lista es: ", prueba)
     }
 
     const handleuserchange = (evt) =>{
         setmensaje(evt.target.value)
-        
     }
 
     return (
         <div>
             <div id="Contenedor">
+                <Container id="Contenedor_textos">
+                    <div id="Comp_msg">
+                        {prueba.map((mensajeee,index)=>{
+                            return(
+                                <div key={index}>
+                                    <Mensaje msg={mensajeee.msgp} idd={mensajeee.idp} key={index} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Container>    
                 <Form>
                     <fieldset >
-                        <Form.Group className="mb-3" >
-                            <Form.Label><h2>Chat</h2></Form.Label>
-                            <Form.Control value={mensajeglobal} as="textarea" readOnly  rows={22}  />
-                        </Form.Group>
                         <div id="texto">
                         <Form.Group  >
                             <Form.Control placeholder="Ingrese un mensaje" id="areatexto" onChange={handleuserchange} />
