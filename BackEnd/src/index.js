@@ -43,6 +43,8 @@ app.use('/',require('./routes/traducir'))
 app.use('/',require('./routes/detectarTexto'))
 //
 app.use('/',require('./routes/EntrarCamara'))
+//chatbot
+app.use('/',require('./routes/chatbot'))
 
 //SERVER LISTENING
 app.listen(app.get('port'), () => {
