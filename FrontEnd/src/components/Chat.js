@@ -7,6 +7,7 @@ import Mensaje from "./Comp_msg/Mensaje"
 export default function Chat() {
     
     const [mensaje, setmensaje] = useState('')
+    const [tmp, settemp]=useState('')
     const [mensajeglobal, setmensajeglobal] = useState('')
     var [prueba,setprueba] =useState([
         {idp: 1,
@@ -19,12 +20,7 @@ export default function Chat() {
 
 
     const Enviarmensaje = async (event) => {
-        console.log("valor del mensaje: "+mensaje)
-        /*aux.idp=0;
-        aux.msgp=mensaje;
-        const auxprueba = prueba
-        auxprueba.push(aux)
-        prueba = auxprueba*/
+        //console.log("valor del mensaje: "+mensaje)
         var p = {
             idp: 0,
             msgp: mensaje
@@ -32,7 +28,8 @@ export default function Chat() {
         prueba.push(p)
         var msg = mensajeglobal+ mensaje +"\n"
         setmensajeglobal(msg) 
-        console.log("la nueva lista es: ", prueba)
+        setmensaje("")
+        //console.log("la nueva lista es: ", prueba)
     }
 
     const handleuserchange = (evt) =>{
@@ -44,6 +41,7 @@ export default function Chat() {
             <div id="Contenedor">
                 <Container id="Contenedor_textos">
                     <div id="Comp_msg">
+                        <br/>
                         {prueba.map((mensajeee,index)=>{
                             return(
                                 <div key={index}>
@@ -57,7 +55,7 @@ export default function Chat() {
                     <fieldset >
                         <div id="texto">
                         <Form.Group  >
-                            <Form.Control placeholder="Ingrese un mensaje" id="areatexto" onChange={handleuserchange} />
+                            <Form.Control placeholder="Ingrese un mensaje" value={mensaje} id="areatexto" onChange={handleuserchange} />
                             
                             <Button id="btnenviar" variant="warning" onClick={Enviarmensaje} >
                                <IoIosSend className="icono"/>                       
