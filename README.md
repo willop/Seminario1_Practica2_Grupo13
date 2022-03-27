@@ -55,6 +55,12 @@ Se creo un usuario con permisos de acceso a ec2 con la cual se gestiono cada una
 El permiso utilizado para este usuario es: AmazonEC2FullAcces
 <img src="images/IAM2Imagenes.png">
 
+* Usuario AmazonLexFullAccess
+Se realizacio la creacion deun usuario con permisos para amazonlex  el cual tiene la funcionalidad poder dar conexion a los servicio del chatbot.
+El permiso utilizado para este usuario es: AmazonLexFullAccess
+<img src="images/amazonlex.png'>
+
+
 # Bucket S3
 
 <img src="images/bucketImagenes.png">
