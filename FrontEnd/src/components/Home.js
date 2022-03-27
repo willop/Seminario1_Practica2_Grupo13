@@ -3,6 +3,7 @@ import { Form, Button,Container, Row, Col } from 'react-bootstrap'
 import BarraNavegacion from '../components/BarraNavegacion'
 import '../Style/Home.css'
 import Cookies from 'universal-cookie'
+import Chat from './Chat'
 
 
 
@@ -28,7 +29,7 @@ export function Home() {
                 body: JSON.stringify({ "username": username })
             }
             //let respuesta = await fetch('http://balanceadorpractica1-723187498.us-east-2.elb.amazonaws.com:5000/home', configuracion)
-            let respuesta = await fetch('http://localhost:5000/home', configuracion)
+            let respuesta = await fetch('http://18.208.114.136:5000/home', configuracion)
             let json = await respuesta.json();
             console.log('valor de la respuesta json')
             console.log(json)
@@ -100,7 +101,9 @@ export function Home() {
                 </center>
 
             </div>
+            <Chat/>
         </div>
+
     )
 }
 

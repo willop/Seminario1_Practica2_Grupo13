@@ -10,6 +10,7 @@ import React from 'react'
 import LoginFoto from '../components/LoginFoto';
 import ExtraerTexto from '../components/ExtraerTexto';
 import TraducirDescripcion from '../components/TraducirDescripcion';
+import Chat from '../components/Chat';
 import '../Style/Aplicacion.css';
 
 export default function AppRoutes() {
@@ -26,6 +27,7 @@ export default function AppRoutes() {
             <Route  path="/LoginFoto" element={<LoginFoto/>} > </Route>
             <Route  path="/ExtraerTexto" element={<ExtraerTexto/>} > </Route>
             <Route  path="/TraducirDescripcion" element={<TraducirDescripcion/>} > </Route>
+            <Route  path="/Chat" element={<Chat/>} > </Route>
         </Routes>
         </BrowserRouter>
         //<div>Hola mundo desde approutes</div>
