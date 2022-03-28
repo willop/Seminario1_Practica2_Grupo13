@@ -2,6 +2,9 @@ const { Router } =require('express');
 const router = Router();
 const aws = require('aws-sdk')
 const aws_keys = require('../../aws/credentials')
+const obtenerAlbums  = require('./obtenerAlbums')
+const obtenerFotos  = require('./obtenerFotos')
+const obtenerTags  = require('./obtenerTags')
 
 router.post('/chatbot', async (req, res) => {
     
@@ -11,13 +14,31 @@ router.post('/chatbot', async (req, res) => {
 
     const params = mapToLex(mensaje,username)
 
-    lexruntime.postText(params,function(err,data){
-        if (err) res.json({respuesta : err}) // an error occurred
+    let data = {}
+    let msg = ""
+    await lexruntime.postText(params,function(err,data){
+        if (err) {
+           msg = "Hubo un problema al comunicarse con el bot, pongase en contacto con el administrador."
+        }
         else {
-            console.log(data) 
-            res.json({respuesta : data.message})
-        }         // successful response
-    });
+            slots = data
+            msg = data.message
+        } 
+    }).promise();
+
+    //obteniendo busqueda de albums
+    if (msg.toLowerCase() == "procedimiento-si"){
+        msg = "Los albums disponibles para " + username + " son: "
+        msg += await obtenerAlbums(username)
+    }else if ( msg.toLowerCase() == "procedimiento-fotos-si"){
+        msg = "Las fotos disponibles para " + username + " son: "
+        msg += await obtenerFotos(username)
+    }else if ( msg.toLowerCase() == "procedimiento-tags-si"){
+        msg = "Los tags disponibles para " + username + " son: "
+        msg += await obtenerTags(username)
+    }
+
+    res.json({respuesta : msg})
 
 });
 

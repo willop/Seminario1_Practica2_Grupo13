@@ -17,4 +17,4 @@ async function obtenerFotos(username) {
     }
 }
 
-module.exports = obtenerAlbums
+module.exports = obtenerFotos

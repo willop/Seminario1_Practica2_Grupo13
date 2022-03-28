@@ -16,4 +16,4 @@ async function obtenerTags(username) {
     }
 }
 
-module.exports = obtenerAlbums
+module.exports = obtenerTags
